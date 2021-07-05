@@ -7,7 +7,7 @@ import { ethers,utils } from "ethers";
 
 import { NETWORKS } from "../../constants";
 import { Transactor } from "../../helpers";
-import { useContractLoader, useOnBlock } from "../../hooks";
+import { useContractLoader, useOnBlock } from "../../hooks/old";
 
 /*
 This is a component for bridging between L1 & L2

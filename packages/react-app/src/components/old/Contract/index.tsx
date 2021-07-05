@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 
 import { Card } from 'antd';
 
-import { useContractExistsAtAddress, useContractLoader } from '../../../hooks';
+import { useContractExistsAtAddress, useContractLoader } from '../../../hooks/old';
 import Account from '../Account';
 import DisplayVariable from './DisplayVariable';
 import FunctionForm from './FunctionForm';

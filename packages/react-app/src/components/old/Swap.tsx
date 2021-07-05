@@ -21,7 +21,7 @@ import {
 import { useBlockNumber, usePoller } from "eth-hooks";
 import { ethers } from "ethers";
 
-import { useDebounce } from "../../hooks";
+import { useDebounce } from "../../hooks/old";
 
 const { Option } = Select;
 const { Text } = Typography;

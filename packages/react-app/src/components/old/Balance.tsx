@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useBalance } from "../../hooks";
+import { useBalance } from "../../hooks/old";
 
 const { utils } = require("ethers");
 

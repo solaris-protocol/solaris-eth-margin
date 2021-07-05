@@ -6,7 +6,7 @@ import { Select } from "antd";
 import { utils } from "ethers";
 
 import { Address, AddressInput } from "../components/old";
-import { useTokenList } from "../hooks";
+import { useTokenList } from "../hooks/old";
 
 const { Option } = Select;
 

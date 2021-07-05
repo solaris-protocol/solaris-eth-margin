@@ -3,7 +3,7 @@ import Blockies from 'react-blockies';
 
 import { Skeleton, Typography } from 'antd';
 
-import { useLookupAddress } from '../../hooks';
+import { useLookupAddress } from '../../hooks/old';
 
 // changed value={address} to address={address}
 
