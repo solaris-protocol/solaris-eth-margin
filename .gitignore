@@ -27,6 +27,7 @@ coverage
 
 # production
 build
+dist
 
 # misc
 .DS_Store
@@ -41,3 +42,5 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+.linaria_cache

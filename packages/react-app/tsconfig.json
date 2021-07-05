@@ -1,0 +1,41 @@
+{
+  "extends": "./tsconfig.paths.json",
+  "compilerOptions": {
+    "declaration": true,
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "typeRoots": [
+      "./src/types"
+    ],
+    "types": [
+      "@types/jest"
+    ],
+    "jsx": "react-jsx",
+    "isolatedModules": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./src/**/*",
+    "babel.config.js",
+    "config-overrides.js"
+  ]
+}
