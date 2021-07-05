@@ -46,7 +46,7 @@ interface Props {}
 
 export const TradeCard: FC<Props> = (props) => {
   // Tokens
-  const [tokenAddressA, setTokenAddressA] = useState('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2');
+  const [tokenAddressA, setTokenAddressA] = useState('0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48');
   const [tokenAddressB, setTokenAddressB] = useState('0x6B175474E89094C44Da98b954EedeAC495271d0F');
   const [tokenValueA, setTokenValueA] = useState('');
   const [tokenValueB, setTokenValueB] = useState('');
@@ -58,7 +58,7 @@ export const TradeCard: FC<Props> = (props) => {
   const [expiresIn, setExpiresIn] = useState('');
 
   // Providers
-  const [provider, setProvider] = useState<string>(PROVIDERS[0]);
+  const [provider, setProvider] = useState(PROVIDERS[0].name);
 
   // Tokens
   const handleTokenAddressAChange = (nextAddress: string) => {

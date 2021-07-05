@@ -30,7 +30,7 @@ const ButtonProvider = styled.button`
 
   background-color: transparent;
   border: 1px solid transparent;
-  
+
   transition: background-color 0.2s, border 0.2s;
 
   &::before {
@@ -42,7 +42,7 @@ const ButtonProvider = styled.button`
     z-index: 1;
 
     opacity: 0.4;
-    
+
     transition: opacity 0.2s;
 
     content: '';
@@ -79,9 +79,28 @@ const ButtonProvider = styled.button`
       opacity: 1;
     }
   }
+
 `;
 
-export const PROVIDERS = ['aave', 'compound', '88mph'];
+type ProviderType = {
+  name: string;
+  isDisabled: boolean;
+};
+
+export const PROVIDERS: ProviderType[] = [
+  {
+    name: 'aave',
+    isDisabled: false,
+  },
+  {
+    name: 'compound',
+    isDisabled: true,
+  },
+  {
+    name: '88mph',
+    isDisabled: true,
+  },
+];
 
 interface Props {
   provider: string;
@@ -97,11 +116,12 @@ export const Providers: FC<Props> = ({ provider, onProviderChange }) => {
     <Wrapper>
       <SubTitle>Liquidity provider</SubTitle>
       <ButtonsGroup>
-        {PROVIDERS.map((providerItem) => (
+        {PROVIDERS.map(({ name, isDisabled }) => (
           <ButtonProvider
-            key={providerItem}
-            className={classNames({ [providerItem]: true, active: provider === providerItem })}
-            onClick={handleProviderClick(providerItem)}
+            key={name}
+            disabled={isDisabled}
+            onClick={handleProviderClick(name)}
+            className={classNames({ [name]: true, active: provider === name })}
           />
         ))}
       </ButtonsGroup>
