@@ -1,65 +1,32 @@
-# 🏗 Scaffold-ETH
+# Solaris Margin Trading
 
-> everything you need to build on Ethereum! 🚀
+<a href='https://eth-margin.solarisprotocol.com'><img src='https://raw.githubusercontent.com/solaris-protocol/solaris-eth-margin/master/assets/UI.png' alt='Solaris Margin Trading' aria-label='eth-margin.solarisprotocol.com' /></a>
 
-🧪 Quickly experiment with Solidity using a frontend that adapts to your smart contract:
+Margin trading using 1inch limit order protocol and different lending protocols: Aave, Compound, Liquity, 88mph
 
-![image](https://user-images.githubusercontent.com/2653167/124158108-c14ca380-da56-11eb-967e-69cde37ca8eb.png)
+## Installation
 
-🎛 Any web3 dev environment is complex, that's why 🏗 Scaffold-ETH comes with everything you need, already working together:
-
-- Hardhat for your local blockchain, deploying, and testing smart contracts.
-- React for building a frontend, using many useful pre-made components and hooks.
-- Ant for your UI. (You can easily changed to another library you prefer)
-- Surge / S3 / IPFS for publishing your app.
-- Tenderly / The Graph / Etherscan / Infura / Blocknative for infrastructure.
-- Support for L2 / Sidechains like Optimism and Arbitrum.
-
-# 🏄‍♂️ Quick Start
-
-Prerequisites: [Node](https://nodejs.org/dist/latest-v12.x/) plus [Yarn](https://classic.yarnpkg.com/en/docs/install/) and [Git](https://git-scm.com/downloads)
-
-> clone/fork 🏗 scaffold-eth:
+Clone the repository
 
 ```bash
-git clone https://github.com/austintgriffith/scaffold-eth.git
+$ git clone https://github.com/solaris-protocol/solaris-eth-margin
+$ cd solaris-eth-margin
 ```
-
-> install and start your 👷‍ Hardhat chain: 
 
 ```bash
-cd scaffold-eth
-yarn install
-yarn chain
+$ yarn start # to start a development
+$ yarn build # to create a production build
 ```
 
-> in a second terminal window, start your 📱 frontend:
+## Development
 
-```bash
-cd scaffold-eth
-yarn start
-```
+Install the following extensions in your code editor for linting and ease of work with the code:
 
-> in a third terminal window, 🛰 deploy your contract:
+- eslint
+- prettier
+- stylint
+- styled-components
 
-```bash
-cd scaffold-eth
-yarn deploy
-```
+## Contributing
 
-You should now have a local blockchain, with `YourContract.sol` deployed, and your app running on https://localhost:3000.
-
-# 📚 Documentation
-
-For a more in-depth explanation, documentation, tutorials, challenges, and many more resources, visit: [docs.scaffoldeth.io](https://docs.scaffoldeth.io) 
-
-# 🛠 Buidl
-
-Check out all the [active branches](https://github.com/austintgriffith/scaffold-eth/branches/active), [open issues](https://github.com/austintgriffith/scaffold-eth/issues), and join/fund the 🏰 [BuidlGuidl](https://BuidlGuidl.com)!
-
-
-# 💬 Support Chat
-
-Join the telegram [support chat 💬](https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA) to ask questions and find others building with 🏗 scaffold-eth!
-
-🙏 Please check out our [Gitcoin grant](https://gitcoin.co/grants/2851/scaffold-eth) too!
+The best way to submit feedback and report bugs is to open a GitHub issue. Please be sure to include your operating system, device, version number, and steps to reproduce reported bugs. Keep in mind that all participants will be expected to follow our code of conduct.
