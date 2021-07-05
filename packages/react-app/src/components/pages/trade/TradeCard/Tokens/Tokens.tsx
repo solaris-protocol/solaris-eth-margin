@@ -94,8 +94,8 @@ export const Tokens: FC<Props> = ({
   onTokenValueBChange,
 }) => {
   const handleReverseClick = () => {
-    onTokenAddressBChange(tokenAddressB);
-    onTokenAddressAChange(tokenAddressA);
+    onTokenAddressBChange(tokenAddressA);
+    onTokenAddressAChange(tokenAddressB);
     onTokenValueBChange(tokenValueA);
     onTokenValueAChange(tokenValueB);
   };
