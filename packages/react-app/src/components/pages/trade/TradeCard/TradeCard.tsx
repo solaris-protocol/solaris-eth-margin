@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 
 import { styled } from '@linaria/react';
 import range from 'lodash/range';
+import Web3Modal from 'web3modal';
 
 import { Button } from './Button';
 import { Params } from './Params';
@@ -42,9 +43,12 @@ const Wrapper = styled.div`
 
 const LEVERAGES = range(2, 26);
 
-interface Props {}
+interface Props {
+  web3Modal: Web3Modal;
+  loadWeb3Modal: () => void;
+}
 
-export const TradeCard: FC<Props> = (props) => {
+export const TradeCard: FC<Props> = ({ web3Modal, loadWeb3Modal }) => {
   // Tokens
   const [tokenAddressA, setTokenAddressA] = useState('0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48');
   const [tokenAddressB, setTokenAddressB] = useState('0x6B175474E89094C44Da98b954EedeAC495271d0F');
@@ -127,7 +131,7 @@ export const TradeCard: FC<Props> = (props) => {
         onExpiresInChange={handleExpiresInChange}
       />
       <Providers provider={provider} onProviderChange={handleProviderChange} />
-      <Button>Create order</Button>
+      {web3Modal.cachedProvider ? <Button>Create order</Button> : <Button onClick={loadWeb3Modal}>Connect</Button>}
     </Wrapper>
   );
 };

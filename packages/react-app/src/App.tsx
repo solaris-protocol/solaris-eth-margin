@@ -21,7 +21,7 @@ import {
   useGasPrice,
   useOnBlock,
   useUserSigner,
-} from './hooks';
+} from './hooks/old';
 import { ExampleUI } from './views';
 
 /// 📡 What chain are your contracts deployed to?
@@ -241,7 +241,7 @@ export const App: FC<{ subgraphUri: string }> = (props) => {
       <BrowserRouter>
         <Switch>
           <Route exact path={['/', '/trade']}>
-            <Trade />
+            <Trade web3Modal={web3Modal} loadWeb3Modal={loadWeb3Modal} />
           </Route>
           <Route path="/exampleui">
             <ExampleUI
