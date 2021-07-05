@@ -241,7 +241,7 @@ export const App: FC<{ subgraphUri: string }> = (props) => {
       <BrowserRouter>
         <Switch>
           <Route exact path={['/', '/trade']}>
-            <Trade web3Modal={web3Modal} loadWeb3Modal={loadWeb3Modal} />
+            <Trade web3Modal={web3Modal} loadWeb3Modal={loadWeb3Modal} tx={tx} writeContracts={writeContracts} />
           </Route>
           <Route path="/exampleui">
             <ExampleUI

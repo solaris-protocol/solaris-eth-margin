@@ -61,10 +61,28 @@ const RemoveButton = styled.button`
 
 interface Props {
   orders: OrderType[];
+  tx: any;
+  writeContracts: any;
   onRemoveOrderClick: () => void;
 }
 
-export const Orders: FC<Props> = ({ orders, onRemoveOrderClick }) => {
+export const Orders: FC<Props> = ({ orders, tx, writeContracts, onRemoveOrderClick }) => {
+  const handleRemoveOrderClick = async () => {
+    const result = tx(writeContracts.YourContract.setPurpose('Send'), (update: any) => {
+      console.log('📡 Transaction Update:', update);
+      if (update && (update.status === 'confirmed' || update.status === 1)) {
+        console.log(` 🍾 Transaction ${update.hash} finished!`);
+        console.log(
+          ` ⛽️ ${update.gasUsed}/${update.gasLimit || update.gas} @ ${parseFloat(update.gasPrice) / 1000000000} gwei`
+        );
+      }
+    });
+    console.log('awaiting metamask/web3 confirm result...', result);
+    console.log(await result);
+
+    onRemoveOrderClick();
+  };
+
   return (
     <WrapperTable>
       <thead>
@@ -92,7 +110,7 @@ export const Orders: FC<Props> = ({ orders, onRemoveOrderClick }) => {
             <TD className="green">{order.pnl}</TD>
             <TD>{order.expiry}</TD>
             <TD>
-              <RemoveButton onClick={onRemoveOrderClick}>
+              <RemoveButton onClick={handleRemoveOrderClick}>
                 <TrashIcon />
               </RemoveButton>
             </TD>

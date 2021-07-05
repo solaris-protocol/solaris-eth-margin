@@ -48,9 +48,11 @@ const ORDER: OrderType = {
 interface Props {
   web3Modal: Web3Modal;
   loadWeb3Modal: () => void;
+  tx: any;
+  writeContracts: any;
 }
 
-export const Trade: FC<Props> = ({ web3Modal, loadWeb3Modal }) => {
+export const Trade: FC<Props> = ({ web3Modal, loadWeb3Modal, tx, writeContracts }) => {
   const [orders, setOrders] = useState<OrderType[]>([]);
 
   const handleCreateOrderClick = () => {
@@ -64,8 +66,19 @@ export const Trade: FC<Props> = ({ web3Modal, loadWeb3Modal }) => {
   return (
     <Wrapper>
       <Container>
-        <TradeCard web3Modal={web3Modal} loadWeb3Modal={loadWeb3Modal} onCreateOrderClick={handleCreateOrderClick} />
-        <OrdersCard orders={orders} onRemoveOrderClick={handleRemoveOrderClick} />
+        <TradeCard
+          web3Modal={web3Modal}
+          loadWeb3Modal={loadWeb3Modal}
+          tx={tx}
+          writeContracts={writeContracts}
+          onCreateOrderClick={handleCreateOrderClick}
+        />
+        <OrdersCard
+          orders={orders}
+          tx={tx}
+          writeContracts={writeContracts}
+          onRemoveOrderClick={handleRemoveOrderClick}
+        />
       </Container>
     </Wrapper>
   );

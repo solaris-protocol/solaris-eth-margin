@@ -22,15 +22,21 @@ const Wrapper = styled.div`
 
 interface Props {
   orders: OrderType[];
+  tx: any;
+  writeContracts: any;
   onRemoveOrderClick: () => void;
 }
 
-export const OrdersCard: FC<Props> = ({ orders, onRemoveOrderClick }) => {
+export const OrdersCard: FC<Props> = ({ orders, tx, writeContracts, onRemoveOrderClick }) => {
   const isNotEmpty = orders.length;
 
   return (
     <Wrapper className={classNames({ isNotEmpty })}>
-      {isNotEmpty ? <Orders orders={orders} onRemoveOrderClick={onRemoveOrderClick} /> : <Empty />}
+      {isNotEmpty ? (
+        <Orders orders={orders} tx={tx} writeContracts={writeContracts} onRemoveOrderClick={onRemoveOrderClick} />
+      ) : (
+        <Empty />
+      )}
     </Wrapper>
   );
 };

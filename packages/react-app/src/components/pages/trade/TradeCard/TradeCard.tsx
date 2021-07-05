@@ -46,10 +46,12 @@ const LEVERAGES = range(2, 26);
 interface Props {
   web3Modal: Web3Modal;
   loadWeb3Modal: () => void;
+  tx: any;
+  writeContracts: any;
   onCreateOrderClick: () => void;
 }
 
-export const TradeCard: FC<Props> = ({ web3Modal, loadWeb3Modal, onCreateOrderClick }) => {
+export const TradeCard: FC<Props> = ({ web3Modal, loadWeb3Modal, tx, writeContracts, onCreateOrderClick }) => {
   // Tokens
   const [tokenAddressA, setTokenAddressA] = useState('0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48');
   const [tokenAddressB, setTokenAddressB] = useState('0x6B175474E89094C44Da98b954EedeAC495271d0F');
@@ -109,6 +111,23 @@ export const TradeCard: FC<Props> = ({ web3Modal, loadWeb3Modal, onCreateOrderCl
     setProvider(nextProvider);
   };
 
+  // Create
+  const handleCreateOrderClick = async () => {
+    const result = tx(writeContracts.YourContract.setPurpose('Send'), (update: any) => {
+      console.log('📡 Transaction Update:', update);
+      if (update && (update.status === 'confirmed' || update.status === 1)) {
+        console.log(` 🍾 Transaction ${update.hash} finished!`);
+        console.log(
+          ` ⛽️ ${update.gasUsed}/${update.gasLimit || update.gas} @ ${parseFloat(update.gasPrice) / 1000000000} gwei`
+        );
+      }
+    });
+    console.log('awaiting metamask/web3 confirm result...', result);
+    console.log(await result);
+
+    onCreateOrderClick();
+  };
+
   return (
     <Wrapper>
       <Tokens
@@ -133,7 +152,7 @@ export const TradeCard: FC<Props> = ({ web3Modal, loadWeb3Modal, onCreateOrderCl
       />
       <Providers provider={provider} onProviderChange={handleProviderChange} />
       {web3Modal.cachedProvider ? (
-        <Button onClick={onCreateOrderClick}>Create order</Button>
+        <Button onClick={handleCreateOrderClick}>Create order</Button>
       ) : (
         <Button onClick={loadWeb3Modal}>Connect</Button>
       )}
