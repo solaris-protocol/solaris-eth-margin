@@ -9,7 +9,6 @@ module.exports = {
           constants: './src/constants',
           utils: './src/utils',
           types: './src/types',
-          app: './src/app',
           hooks: './src/hooks',
           pages: './src/pages',
           components: './src/components',

@@ -1,8 +1,8 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-const { ethers } = require("ethers");
+import { ethers } from 'ethers';
 
 /*
   ~ What it does? ~
@@ -39,7 +39,7 @@ export default function useContractLoader(providerOrSigner, config = {}) {
     let active = true;
 
     async function loadContracts() {
-      if (providerOrSigner && typeof providerOrSigner !== "undefined") {
+      if (providerOrSigner && typeof providerOrSigner !== 'undefined') {
         console.log(`loading contracts`);
         try {
           // we need to check to see if this providerOrSigner has a signer or not
@@ -47,7 +47,7 @@ export default function useContractLoader(providerOrSigner, config = {}) {
           let provider;
           let accounts;
 
-          if (providerOrSigner && typeof providerOrSigner.listAccounts === "function") {
+          if (providerOrSigner && typeof providerOrSigner.listAccounts === 'function') {
             accounts = await providerOrSigner.listAccounts();
           }
 
@@ -69,12 +69,12 @@ export default function useContractLoader(providerOrSigner, config = {}) {
           let contractList = {};
           let externalContractList = {};
           try {
-            contractList = config.hardhatContracts || require("../../contracts/hardhat_contracts.json");
+            contractList = config.hardhatContracts || require('../../contracts/hardhat_contracts.json');
           } catch (e) {
             console.log(e);
           }
           try {
-            externalContractList = config.externalContracts || require("../../contracts/external_contracts.js");
+            externalContractList = config.externalContracts || require('../../contracts/external_contracts.js');
           } catch (e) {
             console.log(e);
           }
@@ -108,7 +108,7 @@ export default function useContractLoader(providerOrSigner, config = {}) {
           }, {});
           if (active) setContracts(newContracts);
         } catch (e) {
-          console.log("ERROR LOADING CONTRACTS!!", e);
+          console.log('ERROR LOADING CONTRACTS!!', e);
         }
       }
     }

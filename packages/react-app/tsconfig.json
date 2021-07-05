@@ -36,6 +36,7 @@
   "include": [
     "./src/**/*",
     "babel.config.js",
-    "config-overrides.js"
+    "config-overrides.js",
+    "linaria.config.js"
   ]
 }

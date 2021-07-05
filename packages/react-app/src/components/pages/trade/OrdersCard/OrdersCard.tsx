@@ -9,12 +9,14 @@ import { Empty } from './Empty';
 import { Orders } from './Orders';
 
 const Wrapper = styled.div`
+  display: flex;
   width: 500px;
 
   background: #151016;
   border-radius: 20px;
 
   &.isNotEmpty {
+    display: initial;
     width: 640px;
     padding: 20px;
   }

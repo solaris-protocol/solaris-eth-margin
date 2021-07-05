@@ -6,7 +6,7 @@ import { usePoller } from "eth-hooks";
 export default function useGasPrice(targetNetwork, speed) {
   const [gasPrice, setGasPrice] = useState();
   const loadGasPrice = async () => {
-    if (targetNetwork.hasOwnProperty("gasPrice")) {
+    if (targetNetwork.gasPrice) {
       setGasPrice(targetNetwork.gasPrice);
     } else if(navigator.onLine){
         axios
