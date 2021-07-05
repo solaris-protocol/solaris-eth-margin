@@ -46,9 +46,10 @@ const LEVERAGES = range(2, 26);
 interface Props {
   web3Modal: Web3Modal;
   loadWeb3Modal: () => void;
+  onCreateOrderClick: () => void;
 }
 
-export const TradeCard: FC<Props> = ({ web3Modal, loadWeb3Modal }) => {
+export const TradeCard: FC<Props> = ({ web3Modal, loadWeb3Modal, onCreateOrderClick }) => {
   // Tokens
   const [tokenAddressA, setTokenAddressA] = useState('0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48');
   const [tokenAddressB, setTokenAddressB] = useState('0x6B175474E89094C44Da98b954EedeAC495271d0F');
@@ -131,7 +132,11 @@ export const TradeCard: FC<Props> = ({ web3Modal, loadWeb3Modal }) => {
         onExpiresInChange={handleExpiresInChange}
       />
       <Providers provider={provider} onProviderChange={handleProviderChange} />
-      {web3Modal.cachedProvider ? <Button>Create order</Button> : <Button onClick={loadWeb3Modal}>Connect</Button>}
+      {web3Modal.cachedProvider ? (
+        <Button onClick={onCreateOrderClick}>Create order</Button>
+      ) : (
+        <Button onClick={loadWeb3Modal}>Connect</Button>
+      )}
     </Wrapper>
   );
 };

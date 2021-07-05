@@ -1,21 +1,36 @@
 import React, { FC } from 'react';
 
 import { styled } from '@linaria/react';
+import classNames from 'classnames';
+
+import { OrderType } from 'pages/trade/Trade';
 
 import { Empty } from './Empty';
+import { Orders } from './Orders';
 
 const Wrapper = styled.div`
-  display: flex;
   width: 500px;
 
   background: #151016;
   border-radius: 20px;
+
+  &.isNotEmpty {
+    width: 640px;
+    padding: 20px;
+  }
 `;
 
-interface Props {}
+interface Props {
+  orders: OrderType[];
+  onRemoveOrderClick: () => void;
+}
 
-export const OrdersCard: FC<Props> = (props) => {
-  return <Wrapper>
-    <Empty />
-  </Wrapper>;
+export const OrdersCard: FC<Props> = ({ orders, onRemoveOrderClick }) => {
+  const isNotEmpty = orders.length;
+
+  return (
+    <Wrapper className={classNames({ isNotEmpty })}>
+      {isNotEmpty ? <Orders orders={orders} onRemoveOrderClick={onRemoveOrderClick} /> : <Empty />}
+    </Wrapper>
+  );
 };
