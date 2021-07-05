@@ -1,7 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import { styled } from '@linaria/react';
-import range from 'lodash/range';
 
 import { Input } from 'components/common/Input';
 
@@ -37,54 +36,44 @@ const Leverage = styled.button`
   letter-spacing: 0.02em;
 `;
 
-const LEVERAGES = range(2, 26);
+interface Props {
+  takeProfitPercent: string;
+  onTakeProfitChange: (nextValue: string) => void;
+  stopLossPercent: string;
+  onStopLossChange: (nextValue: string) => void;
+  leverage: number;
+  onLeverageChange: () => void;
+  expiresIn: string;
+  onExpiresInChange: (nextValue: string) => void;
+}
 
-interface Props {}
-
-export const Params: FC<Props> = (props) => {
-  const [takeProfitPercent, setTakeProfitPercent] = useState('');
-  const [stopLossPercent, setStopLossPercent] = useState('');
-  const [leverage, setLeverage] = useState(LEVERAGES[0]);
-  const [expiresIn, setExpiresIn] = useState('');
-
-  const handleTakeProfitChange = (nextValue: string) => {
-    setTakeProfitPercent(nextValue);
-  };
-
-  const handleStopLossChange = (nextValue: string) => {
-    setStopLossPercent(nextValue);
-  };
-
-  const handleLeverageChange = () => {
-    const index = LEVERAGES.findIndex((item) => item === leverage);
-    if (index + 1 === LEVERAGES.length) {
-      setLeverage(LEVERAGES[0]);
-    } else {
-      setLeverage(LEVERAGES[index + 1]);
-    }
-  };
-
-  const handleExpiresInChange = (nextValue: string) => {
-    setExpiresIn(nextValue);
-  };
-
+export const Params: FC<Props> = ({
+  takeProfitPercent,
+  onTakeProfitChange,
+  stopLossPercent,
+  onStopLossChange,
+  leverage,
+  onLeverageChange,
+  expiresIn,
+  onExpiresInChange,
+}) => {
   return (
     <Wrapper>
       <Column>
         <SubTitleStyled>Take profit</SubTitleStyled>
-        <Input placeholder="0.00%" value={takeProfitPercent} onChange={handleTakeProfitChange} />
+        <Input placeholder="0.00%" value={takeProfitPercent} onChange={onTakeProfitChange} />
       </Column>
       <Column>
         <SubTitleStyled>Stop loss</SubTitleStyled>
-        <Input placeholder="0.00%" value={stopLossPercent} onChange={handleStopLossChange} />
+        <Input placeholder="0.00%" value={stopLossPercent} onChange={onStopLossChange} />
       </Column>
       <Column className="center">
         <SubTitleStyled>Leverage</SubTitleStyled>
-        <Leverage onClick={handleLeverageChange}>{leverage}x</Leverage>
+        <Leverage onClick={onLeverageChange}>{leverage}x</Leverage>
       </Column>
       <Column className="right">
         <SubTitleStyled>Expires in</SubTitleStyled>
-        <Input placeholder="0" value={expiresIn} onChange={handleExpiresInChange} />
+        <Input placeholder="0" value={expiresIn} onChange={onExpiresInChange} />
       </Column>
     </Wrapper>
   );

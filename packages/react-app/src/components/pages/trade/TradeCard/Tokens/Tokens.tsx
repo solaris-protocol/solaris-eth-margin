@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import { styled } from '@linaria/react';
 
@@ -32,7 +32,7 @@ const BalanceWrapper = styled.div`
 
 const WalletIconStyled = styled(WalletIcon)`
   margin-top: -2px;
-`
+`;
 
 const Balance = styled.span`
   display: inline-block;
@@ -72,35 +72,32 @@ const ReverseWrapper = styled.div`
   margin: 5px 0 10px;
 `;
 
-interface Props {}
+interface Props {
+  tokenAddressA: string;
+  onTokenAddressAChange: (nextAddress: string) => void;
+  tokenAddressB: string;
+  onTokenAddressBChange: (nextAddress: string) => void;
+  tokenValueA: string;
+  onTokenValueAChange: (nextValue: string) => void;
+  tokenValueB: string;
+  onTokenValueBChange: (nextValue: string) => void;
+}
 
-export const Tokens: FC<Props> = (props) => {
-  const [tokenAddressA, setTokenAAddress] = useState('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2');
-  const [tokenAddressB, setTokenBAddress] = useState('0x6B175474E89094C44Da98b954EedeAC495271d0F');
-  const [tokenAValue, setTokenAValue] = useState('');
-  const [tokenBValue, setTokenBValue] = useState('');
-
-  const handleTokenAAddressChange = (nextAddress: string) => {
-    setTokenAAddress(nextAddress);
-  };
-
-  const handleTokenBAddressChange = (nextAddress: string) => {
-    setTokenBAddress(nextAddress);
-  };
-
+export const Tokens: FC<Props> = ({
+  tokenAddressA,
+  onTokenAddressAChange,
+  tokenAddressB,
+  onTokenAddressBChange,
+  tokenValueA,
+  onTokenValueAChange,
+  tokenValueB,
+  onTokenValueBChange,
+}) => {
   const handleReverseClick = () => {
-    setTokenAAddress(tokenAddressB);
-    setTokenBAddress(tokenAddressA);
-    setTokenAValue(tokenBValue);
-    setTokenBValue(tokenAValue);
-  };
-
-  const handleTokenAValueChange = (nextValue: string) => {
-    setTokenAValue(nextValue);
-  };
-
-  const handleTokenBValueChange = (nextValue: string) => {
-    setTokenBValue(nextValue);
+    onTokenAddressBChange(tokenAddressB);
+    onTokenAddressAChange(tokenAddressA);
+    onTokenValueBChange(tokenValueA);
+    onTokenValueAChange(tokenValueB);
   };
 
   return (
@@ -115,9 +112,9 @@ export const Tokens: FC<Props> = (props) => {
       </Top>
       <TokenSection
         address={tokenAddressA}
-        onAddressChange={handleTokenAAddressChange}
-        value={tokenAValue}
-        onValueChange={handleTokenAValueChange}
+        onAddressChange={onTokenAddressAChange}
+        value={tokenValueA}
+        onValueChange={onTokenValueAChange}
       />
       <ReverseWrapper>
         <Reverse onClick={handleReverseClick} />
@@ -127,9 +124,9 @@ export const Tokens: FC<Props> = (props) => {
       </Top>
       <TokenSection
         address={tokenAddressB}
-        onAddressChange={handleTokenBAddressChange}
-        value={tokenBValue}
-        onValueChange={handleTokenBValueChange}
+        onAddressChange={onTokenAddressBChange}
+        value={tokenValueB}
+        onValueChange={onTokenValueBChange}
       />
     </Wrapper>
   );

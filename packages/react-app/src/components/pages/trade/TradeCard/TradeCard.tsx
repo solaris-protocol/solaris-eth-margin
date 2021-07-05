@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 
 import { styled } from '@linaria/react';
+import range from 'lodash/range';
 
 import { Button } from './Button';
 import { Params } from './Params';
@@ -39,19 +40,92 @@ const Wrapper = styled.div`
   }
 `;
 
+const LEVERAGES = range(2, 26);
+
 interface Props {}
 
 export const TradeCard: FC<Props> = (props) => {
+  // Tokens
+  const [tokenAddressA, setTokenAddressA] = useState('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2');
+  const [tokenAddressB, setTokenAddressB] = useState('0x6B175474E89094C44Da98b954EedeAC495271d0F');
+  const [tokenValueA, setTokenValueA] = useState('');
+  const [tokenValueB, setTokenValueB] = useState('');
+
+  // Params
+  const [takeProfitPercent, setTakeProfitPercent] = useState('');
+  const [stopLossPercent, setStopLossPercent] = useState('');
+  const [leverage, setLeverage] = useState(LEVERAGES[0]);
+  const [expiresIn, setExpiresIn] = useState('');
+
+  // Providers
   const [provider, setProvider] = useState<string>(PROVIDERS[0]);
 
+  // Tokens
+  const handleTokenAddressAChange = (nextAddress: string) => {
+    setTokenAddressA(nextAddress);
+  };
+
+  const handleTokenAddressBChange = (nextAddress: string) => {
+    setTokenAddressB(nextAddress);
+  };
+
+  const handleTokenValueAChange = (nextValue: string) => {
+    setTokenValueA(nextValue);
+  };
+
+  const handleTokenValueBChange = (nextValue: string) => {
+    setTokenValueB(nextValue);
+  };
+
+  // Params
+  const handleTakeProfitChange = (nextValue: string) => {
+    setTakeProfitPercent(nextValue);
+  };
+
+  const handleStopLossChange = (nextValue: string) => {
+    setStopLossPercent(nextValue);
+  };
+
+  const handleLeverageChange = () => {
+    const index = LEVERAGES.findIndex((item) => item === leverage);
+    if (index + 1 === LEVERAGES.length) {
+      setLeverage(LEVERAGES[0]);
+    } else {
+      setLeverage(LEVERAGES[index + 1]);
+    }
+  };
+
+  const handleExpiresInChange = (nextValue: string) => {
+    setExpiresIn(nextValue);
+  };
+
+  // Providers
   const handleProviderChange = (nextProvider: string) => {
     setProvider(nextProvider);
   };
 
   return (
     <Wrapper>
-      <Tokens />
-      <Params />
+      <Tokens
+        tokenAddressA={tokenAddressA}
+        onTokenAddressAChange={handleTokenAddressAChange}
+        tokenAddressB={tokenAddressB}
+        onTokenAddressBChange={handleTokenAddressBChange}
+        tokenValueA={tokenValueA}
+        onTokenValueAChange={handleTokenValueAChange}
+        tokenValueB={tokenValueB}
+        onTokenValueBChange={handleTokenValueBChange}
+      />
+      <Params
+        takeProfitPercent={takeProfitPercent}
+        onTakeProfitChange={handleTakeProfitChange}
+        stopLossPercent={stopLossPercent}
+        onStopLossChange={handleStopLossChange}
+        leverage={leverage}
+        onLeverageChange={handleLeverageChange}
+        expiresIn={expiresIn}
+        onExpiresInChange={handleExpiresInChange}
+      />
       <Providers provider={provider} onProviderChange={handleProviderChange} />
       <Button>Create order</Button>
     </Wrapper>
