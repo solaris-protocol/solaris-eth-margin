@@ -18,6 +18,8 @@ $ yarn start # to start a development
 $ yarn build # to create a production build
 ```
 
+## [Contracts repository](https://github.com/kmadorin/solaris-eth-margin)
+
 ## How it works
 
 <a href='https://drive.google.com/file/d/1pFpg_Pf8urCu4YtOuh87Y-KfA01ySYh2/view?usp=sharing' target="_blank"><img src='https://raw.githubusercontent.com/solaris-protocol/solaris-eth-margin/master/assets/HIW.png' alt='How it works' aria-label='https://drive.google.com/file/d/1pFpg_Pf8urCu4YtOuh87Y-KfA01ySYh2/view?usp=sharing' /></a>
